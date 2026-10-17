@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Vanity Soul</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Playfair Display', 'Georgia', serif;
+        }
+
+        body {
+            background-color: #C98FB0;
+            color: #2c2c2c;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: hsl(296, 63%, 82%);
+            padding: 2.5rem 1.5rem 1.8rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #f0e6df;
+        }
+
+        header h1 {
+            color: #b45ead;
+            font-size: 2.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+
+        header p {
+            color: #8d7b68;
+            margin-top: 0.5rem;
+            font-style: italic;
+            font-size: 1rem;
+        }
+
+        main {
+            flex: 1;
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* SECCIÓN DE FILTROS Y ACCIÓN */
+        .contenedor-filtros {
+            background-color: #ffffff;
+            border: 1px solid #f0e6df;
+            padding: 1.2rem;
+            margin-bottom: 2rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(212, 163, 115, 0.05);
+        }
+
+        .grupo-filtro {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .grupo-filtro label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8d7b68;
+        }
+
+        .grupo-filtro select {
+            padding: 0.55rem;
+            border: 1px solid #e0d5c1;
+            background-color: #fdfbf7;
+            color: #2c2c2c;
+            font-size: 0.85rem;
+            outline: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .grupo-filtro select:focus {
+            border-color: #d4a373;
+        }
+
+        .btn-limpiar {
+            background-color: transparent;
+            color: #8d7b68;
+            border: 1px solid #e0d5c1;
+            padding: 0.6rem 1rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            align-self: flex-end;
+            transition: all 0.2s;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        .btn-limpiar:hover {
+            background-color: #d4a373;
+            color: #ffffff;
+            border-color: #d4a373;
+        }
+
+        .contador-resultados {
+            width: 100%;
+            font-size: 0.85rem;
+            color: #9c8e7d;
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin-top: 0.2rem;
+        }
+
+        /* GRID DEL CATÁLOGO */
+        .grid-catalogo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .tarjeta-auto {
+            background-color: #ffffff;
+            border: 1px solid #f0e6df;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tarjeta-auto.oculto {
+            display: none;
+        }
+
+        .tarjeta-auto:hover {
+            border-color: #d4a373;
+            box-shadow: 0 8px 20px rgba(212, 163, 115, 0.15);
+        }
+
+        .imagen-contenedor {
+            width: 100%;
+            height: 320px;
+            background-color: #f7f3ee;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .imagen-contenedor img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .tarjeta-auto:hover .imagen-contenedor img {
+            transform: scale(1.04);
+        }
+
+        .etiqueta-gama {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(212, 163, 115, 0.9);
+            color: #ffffff;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.7rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 3px;
+        }
+
+        .contenido-tarjeta {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        .contenido-tarjeta h3 {
+            font-family: 'Playfair Display', serif;
+            color: #2c2c2c;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            font-weight: normal;
+        }
+
+        .precio-tarjeta {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #d4a373;
+            margin-bottom: 0.6rem;
+        }
+
+        .contenido-tarjeta .detalles {
+            color: #666666;
+            font-size: 0.85rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .btn-contacto {
+            background-color: #d4a373;
+            color: #ffffff;
+            border: 1px solid #d4a373;
+            padding: 0.75rem 1rem;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        .btn-contacto:hover {
+            background-color: #ffffff;
+            color: #d4a373;
+        }
+
+        .sin-resultados {
+            display: none;
+            text-align: center;
+            padding: 4rem 1rem;
+            color: #8d7b68;
+            font-size: 1.1rem;
+            grid-column: 1 / -1;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        /* MODAL DE ESPECIFICACIONES Y GALERÍA */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(44, 44, 44, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal-contenido {
+            background-color: #ffffff;
+            max-width: 650px;
+            width: 100%;
+            border: 1px solid #f0e6df;
+            border-radius: 8px;
+            position: relative;
+            padding: 1.8rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            max-height: 90vh;
+            overflow-y: auto;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        .btn-cerrar {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #8d7b68;
+            line-height: 1;
+        }
+
+        .modal-contenido h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 0.2rem;
+            color: #2c2c2c;
+        }
+
+        .modal-precio-destacado {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #d4a373;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #f0e6df;
+            padding-bottom: 0.5rem;
+        }
+
+        /* ESTILOS DE GALERÍA INDIVIDUAL Y NAVEGACIÓN */
+        .galeria-contenedor {
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        .visor-imagen {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            background-color: #f7f3ee;
+            border: 1px solid #f0e6df;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .modal-imagen {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Botones Flechas Galería */
+        .flecha-galeria {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #2c2c2c;
+            border: none;
+            font-size: 1.5rem;
+            padding: 0.5rem 0.8rem;
+            cursor: pointer;
+            user-select: none;
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            transition: background-color 0.2s;
+            z-index: 5;
+        }
+
+        .flecha-galeria:hover {
+            background-color: #d4a373;
+            color: #ffffff;
+        }
+
+        .flecha-izq {
+            left: 0;
+        }
+
+        .flecha-der {
+            right: 0;
+        }
+
+        .miniaturas-contenedor {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.3rem;
+        }
+
+        .miniatura {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: 0.6;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            background-color: #f7f3ee;
+            flex-shrink: 0;
+        }
+
+        .miniatura:hover, .miniatura.activa {
+            opacity: 1;
+            border-color: #d4a373;
+        }
+
+        /* TABLA DE 12 ESPECIFICACIONES (DETALLES DE PRENDA) */
+        .tabla-especificaciones {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.2rem;
+            font-size: 0.85rem;
+        }
+
+        .tabla-especificaciones tr:nth-child(even) {
+            background-color: #faf7f2;
+        }
+
+        .tabla-especificaciones td {
+            padding: 0.5rem 0.7rem;
+            border-bottom: 1px solid #f0e6df;
+        }
+
+        .tabla-especificaciones td.etiqueta {
+            font-weight: 600;
+            color: #8d7b68;
+            width: 45%;
+        }
+
+        .tabla-especificaciones td.valor {
+            color: #444444;
+        }
+
+        .modal-descripcion {
+            font-size: 0.88rem;
+            line-height: 1.5;
+            color: #444444;
+            margin-bottom: 1.2rem;
+            padding: 0.8rem;
+            background-color: #faf7f2;
+            border-left: 3px solid #d4a373;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* AVISO DE PROTECCIÓN / LEGAL Y POLÍTICA DE COMPRA */
+        .aviso-proteccion {
+            margin-top: 3.5rem;
+            padding: 1.2rem;
+            background-color: #faf7f2;
+            border: 1px solid #f0e6df;
+            border-radius: 6px;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 0.78rem;
+            color: #8d7b68;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .aviso-proteccion strong {
+            color: #2c2c2c;
+        }
+
+        footer {
+            background-color: #ffffff;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid #f0e6df;
+            color: #8d7b68;
+            font-size: 0.85rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Vanity Soul</h1>
+        <p>Catálogo exclusivo de moda femenina</p>
+    </header>
+
+    <main>
+        <!-- SECCIÓN DE FILTROS -->
+        <section class="contenedor-filtros">
+            <div class="grupo-filtro">
+                <label for="filtroMarca">Marca</label>
+                <select id="filtroMarca" onchange="filtrarCatalogo()">
+                    <option value="todos">Todas las marcas</option>
+                    <option value="zara">Zara</option>
+                    <option value="mango">Mango</option>
+                    <option value="hm">H&M</option>
+                    <option value="stradivarius">Stradivarius</option>
+                    <option value="massimo-dutti">Massimo Dutti</option>
+                    <option value="pull-bear">Pull & Bear</option>
+                    <option value="bershka">Bershka</option>
+                    <option value="forever21">Forever 21</option>
+                    <option value="shein">Shein Premium</option>
+                    <option value="rivera-atelier">Rivera Atelier</option>
+                </select>
+            </div>
+
+            <div class="grupo-filtro">
+                <label for="filtroTipo">Tipo de Prenda</label>
+                <select id="filtroTipo" onchange="filtrarCatalogo()">
+                    <option value="todos">Todos los tipos</option>
+                    <option value="vestido">Vestidos</option>
+                    <option value="blusa">Blusas / Tops</option>
+                    <option value="pantalon">Pantalones / Jeans</option>
+                    <option value="abrigo">Abrigos / Sacos</option>
+                </select>
+            </div>
+
+            <div class="grupo-filtro">
+                <label for="filtroRangoPrecio">Rango de Precio</label>
+                <select id="filtroRangoPrecio" onchange="filtrarCatalogo()">
+                    <option value="todos">Cualquier precio</option>
+                    <option value="rango-1">Hasta $500 MXN</option>
+                    <option value="rango-2">$500 - $1,500 MXN</option>
+                    <option value="rango-3">Más de $1,500 MXN</option>
+                </select>
+            </div>
+
+            <div class="grupo-filtro">
+                <label for="filtroTransmision">Talla Disponibilidad</label>
+                <select id="filtroTransmision" onchange="filtrarCatalogo()">
+                    <option value="todos">Todas las tallas</option>
+                    <option value="chica">Chica (S)</option>
+                    <option value="mediana">Mediana (M)</option>
+                    <option value="grande">Grande (L)</option>
+                </select>
+            </div>
+
+            <button class="btn-limpiar" onclick="limpiarFiltros()">Limpiar Filtros</button>
+
+            <div class="contador-resultados" id="contadorResultados">
+                Cargando prendas...
+            </div>
+        </section>
+
+        <!-- GRID DE VEHÍCULOS (AHORA PRENDAS DE ROPA) -->
+        <div class="grid-catalogo" id="gridCatalogo"></div>
+        <div class="sin-resultados" id="sinResultados">
+            No se encontraron prendas que coincidan con los filtros seleccionados.
+        </div>
+
+        <!-- AVISO LEGAL Y DE PROTECCIÓN -->
+        <section class="aviso-proteccion">
+            <p><strong>Aviso importante:</strong> Los precios, disponibilidad de prendas y guías de tallas están sujetos a cambios sin previo aviso. Las imágenes son ilustrativas y los tonos reales de los telares pueden variar según la pantalla. Cambios o devoluciones son válidos dentro de los primeros 15 días posteriores a la entrega conservando sus etiquetas originales.</p>
+        </section>
+    </main>
+
+    <!-- VENTANA MODAL CON GALERÍA Y FLECHAS -->
+    <div id="modalEspecificaciones" class="modal" onclick="cerrarModalAlHacerClicAfuera(event)">
+        <div class="modal-contenido">
+            <span class="btn-cerrar" onclick="cerrarModal()">&times;</span>
+            <h2 id="modalTitulo">Cargando...</h2>
+            <div id="modalPrecio" class="modal-precio-destacado">$0 MXN</div>
+            
+            <!-- GALERÍA DE IMÁGENES CON FLECHAS -->
+            <div class="galeria-contenedor">
+                <div class="visor-imagen">
+                    <button class="flecha-galeria flecha-izq" onclick="cambiarImagenModal(-1)">&#8249;</button>
+                    <img id="modalImagen" class="modal-imagen" src="" alt="Prenda en venta">
+                    <button class="flecha-galeria flecha-der" onclick="cambiarImagenModal(1)">&#8250;</button>
+                </div>
+                <div id="modalMiniaturas" class="miniaturas-contenedor"></div>
+            </div>
+            
+            <!-- 12 ESPECIFICACIONES CLAVE (ADAPTADAS A TIENDA DE ROPA) -->
+            <table class="tabla-especificaciones">
+                <tr>
+                    <td class="etiqueta">1. Colección / Temporada:</td>
+                    <td class="valor" id="modalAnio">-</td>
+                </tr>
+                <tr>
+                    <td class="etiqueta">2. Marca / Diseñador:</td>
+                    <td class="valor" id="modalMarcaTexto">-</td>
+                </tr>
+                <tr>
+                    <td class="etiqueta">3. Categoria / Tipo:</td>
+                    <td class="valor" id="modalTipoTexto">-</td>
+                </tr>
+                <tr>
+                    <td class="etiqueta">4. Composición / Material:</td>
+                    <td class="valor" id="modalMotor">-</td>
+                </tr>
+                <tr>
+                    <td class="etiqueta">5. Talla Principal:</td>
+                    <td class="valor" id="modalTransmision">-</td>
+                </tr>
+                <tr>
+                    <td class="etiqueta">6. Guía / Ajuste:</td>
+                    <td class="valor" id="modalKilometraje">-</td>
+                </tr>
+                <tr>
+                    <td class="etiqueta">7. Tonalidad / Color:</td>
+                    <td class="valor" id="modalPintura">-</td>
+                </tr>
+                <tr>
+                    <td class="etiqueta">8. Detalles / Textura:</td>
+                    <td class="valor" id="modalInteriores">-</td>
+                </tr>
+                <tr>
+                    <td class="etiqueta">9. Garantía / Autenticidad:</td>
+                    <td class="valor" id="modalDocumentos">-</td>
+                </tr>
+                <tr>
+                    <td class="etiqueta">10. Cuidados de Lavado:</td>
+                    <td class="valor" id="modalLlaves">-</td>
+                </tr>
+                <tr>
+                    <td class="etiqueta">11. Origen / Confección:</td>
+                    <td class="valor" id="modalCombustible">-</td>
+                </tr>
+                <tr>
+                    <td class="etiqueta">12. Disponibilidad / Stock:</td>
+                    <td class="valor" id="modalEstado">-</td>
+                </tr>
+            </table>
+
+            <p class="modal-descripcion" id="modalDescripcion"></p>
+
+            <button class="btn-contacto" style="width: 100%;" id="btnConsultarModal">Solicitar Informes por WhatsApp</button>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Contacto Directo:</strong> +52 8770  0625 | Acolman</p>
+        <p>&copy; 2026 Vanity Soul. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const fallbackImg = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22290%22%20height%3D%22320%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23f7f3ee%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20font-family%3D%22Arial%22%20font-size%3D%2214%22%20fill%3D%22%238d7b68%22%20text-anchor%3D%22middle%22%20dy%3D%22.3em%22%3EImagen%20no%20disponible%3C%2Ftext%3E%3C%2Fsvg%3E";
+
+        /* Variables globales */
+        let imagenesModalActuales = [];
+        let indiceImagenActual = 0;
+
+        /* Arreglo de prendas (mantenemos estructura exacta y 12 especificaciones clave) */
+        const autos = [
+            { 
+                id: "vestido-saten", 
+                nombre: "Vestido Satén Elegance", 
+                precio: 850, 
+                marca: "zara", 
+                tipo: "vestido", 
+                transmision: "mediana", 
+                rango: "rango-2", 
+                gama: "Tendencia", 
+                imagenes: ["img/vestido_saten_1.jpg", "img/vestido_saten_2.jpg"], 
+                anio: "Primavera-Verano 2026", 
+                motor: "95% Seda sintética, 5% Elastano", 
+                kilometraje: "Corte Slim Fit",
+                pintura: "Rosa Palo / Nude", 
+                interiores: "Acabado Satinado Brillantina",
+                documentos: "Nueva con Etiquetas",
+                llaves: "Lavar en seco o ciclo delicado",
+                combustible: "Nacional / Importado",
+                estado: "Disponible", 
+                descripcion: "Vestido midi de satén suave con escote fluido y tirantes ajustables. Ideal para eventos formales o de noche." 
+            },
+            { 
+                id: "blusa-lino", 
+                nombre: "Pantalon bagy", 
+                precio: 750, 
+                marca: "mango", 
+                tipo: "pantalon", 
+                transmision: "chica", 
+                rango: "rango-1", 
+                gama: "Básico Luxe", 
+                imagenes: ["img/blusa_lino_1.jpg", "img/blusa_lino_2.jpg",], 
+                anio: "Verano 2026", 
+                motor: "100% Lino Orgánico", 
+                kilometraje: "Corte Holgado Comfort",
+                pintura: "Blanco Marfil", 
+                interiores: "Botones de Concha Natural",
+                documentos: "Garantía de Calidad Mango",
+                llaves: "Lavar a mano con agua fría",
+                combustible: "España",
+                estado: "Disponible", 
+                descripcion: "Blusa fresca y transpirable de lino premium. Diseño versátil de manga corta con cuello en V." 
+            },
+            { 
+                id: "overol-gris", 
+                nombre: "overol-gris", 
+                precio: 1890, 
+                marca: "massimo-dutti", 
+                tipo: "vesido", 
+                transmision: "mediana", 
+                rango: "rango-3", 
+                gama: "Exclusivo", 
+                imagenes: ["img/vestido-gris_1.jpg"], 
+                anio: "Otoño-Invierno 2026", 
+                motor: "80% Lana, 20% Poliamida", 
+                kilometraje: "Estructurado / Estándar",
+                pintura: "Camel / Café Claro", 
+                interiores: "Forro interior de Viscosa",
+                documentos: "Etiqueta Original Massimo Dutti",
+                llaves: "Limpieza profesional únicamente",
+                combustible: "Italia / Confección Premium",
+                estado: "Disponible", 
+                descripcion: "Saco largo confeccionado en mezcla de lana de alta densidad. Solapas cruzadas y cinturón ajustable." 
+            },
+            { 
+                id: "blusa ", 
+                nombre: "Blusa-negra", 
+                precio: 680, 
+                marca: "stradivarius", 
+                tipo: "blusa", 
+                transmision: "grande", 
+                rango: "rango-2", 
+                gama: "Casual Chic", 
+                imagenes: ["img/blusa_1.jpg"], 
+                anio: "Primavera 2026", 
+                motor: "Poly-Viscosa Stretch", 
+                kilometraje: "Tiro Alto / Pierna Ancha",
+                pintura: "Negro Obsidiana", 
+                interiores: "Pliegues frontales de vestir",
+                documentos: "Prenda Auténtica",
+                llaves: "Lavar a máquina 30°C",
+                combustible: "Nacional",
+                estado: "Disponible", 
+                descripcion: "Pantalón estilo pijama de vestir, tiro alto favorecedor para estilizar la figura. Caída fluida y elegante." 
+            },
+            { 
+                id: "vestido-floral", 
+                nombre: "Vestido Largo BOHO Floral", 
+                precio: 1200, 
+                marca: "rivera-atelier", 
+                tipo: "vestido", 
+                transmision: "chica", 
+                rango: "rango-2", 
+                gama: "Artesanal", 
+                imagenes: ["img/vestido_boho_1.jpg"], 
+                anio: "Edición Limitada 2026", 
+                motor: "100% Algodón Bordado", 
+                kilometraje: "Corte A / Relajado",
+                pintura: "Estampado Floral Lavanda", 
+                interiores: "Encaje delicado en bordes",
+                documentos: "Certificado Rivera Atelier",
+                llaves: "Lavar a mano sin blanqueador",
+                combustible: "Hecho a mano en México",
+                estado: "Disponible", 
+                descripcion: "Diseño boho-chic con cuello drapeado y mangas abullonadas. Confeccionado artesanalmente." 
+            },
+             { 
+                id: "saco-abrigo", 
+                nombre: "Vestido Largo BOHO Floral", 
+                precio: 1200, 
+                marca: "rivera-atelier", 
+                tipo: "abrigo", 
+                transmision: "chica", 
+                rango: "rango-2", 
+                gama: "Artesanal", 
+                imagenes: ["img/abrigo_1.jpg"], 
+                anio: "Edición Limitada 2026", 
+                motor: "100% Algodón Bordado", 
+                kilometraje: "Corte A / Relajado",
+                pintura: "Estampado Floral Lavanda", 
+                interiores: "Encaje delicado en bordes",
+                documentos: "Certificado Rivera Atelier",
+                llaves: "Lavar a mano sin blanqueador",
+                combustible: "Hecho a mano en México",
+                estado: "Disponible", 
+                descripcion: "Diseño boho-chic con cuello drapeado y mangas abullonadas. Confeccionado artesanalmente." 
+            }
+        ];
+
+        function cargarCatalogo() {
+            const grid = document.getElementById("gridCatalogo");
+            grid.innerHTML = "";
+
+            autos.forEach(auto => {
+                const imgPrincipal = auto.imagenes && auto.imagenes.length > 0 ? auto.imagenes[0] : fallbackImg;
+
+                const article = document.createElement("article");
+                article.className = "tarjeta-auto";
+                article.setAttribute("data-id", auto.id);
+                article.setAttribute("data-marca", auto.marca);
+                article.setAttribute("data-tipo", auto.tipo);
+                article.setAttribute("data-rango", auto.rango);
+                article.setAttribute("data-transmision", auto.transmision);
+
+                article.innerHTML = `
+                    <div class="imagen-contenedor" onclick="abrirEspecificaciones('${auto.id}')">
+                        <span class="etiqueta-gama">${auto.gama}</span>
+                        <img src="${imgPrincipal}" alt="${auto.nombre}" onerror="this.src='${fallbackImg}'">
+                    </div>
+                    <div class="contenido-tarjeta">
+                        <h3>${auto.nombre}</h3>
+                        <p class="precio-tarjeta">$${auto.precio.toLocaleString("es-MX")} MXN</p>
+                        <p class="detalles">${auto.descripcion}</p>
+                        <button class="btn-contacto" onclick="abrirEspecificaciones('${auto.id}')">Ver Detalle de Prenda</button>
+                    </div>
+                `;
+                grid.appendChild(article);
+            });
+
+            actualizarContador();
+        }
+
+        function filtrarCatalogo() {
+            const marca = document.getElementById("filtroMarca").value;
+            const tipo = document.getElementById("filtroTipo").value;
+            const rango = document.getElementById("filtroRangoPrecio").value;
+            const transmision = document.getElementById("filtroTransmision").value;
+
+            const tarjetas = document.querySelectorAll(".tarjeta-auto");
+            let visibles = 0;
+
+            tarjetas.forEach(tarjeta => {
+                const matchMarca = (marca === "todos" || tarjeta.getAttribute("data-marca") === marca);
+                const matchTipo = (tipo === "todos" || tarjeta.getAttribute("data-tipo") === tipo);
+                const matchRango = (rango === "todos" || tarjeta.getAttribute("data-rango") === rango);
+                const matchTransmision = (transmision === "todos" || tarjeta.getAttribute("data-transmision") === transmision);
+
+                if (matchMarca && matchTipo && matchRango && matchTransmision) {
+                    tarjeta.classList.remove("oculto");
+                    visibles++;
+                } else {
+                    tarjeta.classList.add("oculto");
+                }
+            });
+
+            const sinResultados = document.getElementById("sinResultados");
+            sinResultados.style.display = (visibles === 0) ? "block" : "none";
+
+            document.getElementById("contadorResultados").textContent = `Mostrando ${visibles} de ${autos.length} prendas disponibles`;
+        }
+
+        function limpiarFiltros() {
+            document.getElementById("filtroMarca").value = "todos";
+            document.getElementById("filtroTipo").value = "todos";
+            document.getElementById("filtroRangoPrecio").value = "todos";
+            document.getElementById("filtroTransmision").value = "todos";
+            filtrarCatalogo();
+        }
+
+        function actualizarContador() {
+            document.getElementById("contadorResultados").textContent = `Mostrando ${autos.length} de ${autos.length} prendas disponibles`;
+        }
+
+        /* LÓGICA DE MODAL, NAVEGACIÓN CON FLECHAS Y MINIATURAS */
+        function abrirEspecificaciones(id) {
+            const auto = autos.find(a => a.id === id);
+            if (!auto) return;
+
+            document.getElementById("modalTitulo").textContent = auto.nombre;
+            document.getElementById("modalPrecio").textContent = `$${auto.precio.toLocaleString("es-MX")} MXN`;
+            
+            // Cargar imágenes globales para navegación con flechas
+            imagenesModalActuales = auto.imagenes && auto.imagenes.length > 0 ? auto.imagenes : [fallbackImg];
+            indiceImagenActual = 0;
+            
+            const contenedorMiniaturas = document.getElementById("modalMiniaturas");
+            contenedorMiniaturas.innerHTML = "";
+
+            // Renderizar miniaturas
+            imagenesModalActuales.forEach((url, index) => {
+                const thumb = document.createElement("img");
+                thumb.src = url;
+                thumb.className = `miniatura ${index === 0 ? 'activa' : ''}`;
+                thumb.alt = `${auto.nombre} - Foto ${index + 1}`;
+                
+                thumb.onerror = function() { this.src = fallbackImg; };
+
+                thumb.onclick = function() {
+                    actualizarImagenModal(index);
+                };
+
+                contenedorMiniaturas.appendChild(thumb);
+            });
+
+            actualizarImagenModal(0);
+
+            // Poblar las 12 especificaciones adaptadas a la ropa
+            document.getElementById("modalAnio").textContent = auto.anio;
+            document.getElementById("modalMarcaTexto").textContent = auto.marca.charAt(0).toUpperCase() + auto.marca.slice(1);
+            document.getElementById("modalTipoTexto").textContent = auto.tipo.charAt(0).toUpperCase() + auto.tipo.slice(1);
+            document.getElementById("modalMotor").textContent = auto.motor;
+            document.getElementById("modalTransmision").textContent = auto.transmision.charAt(0).toUpperCase() + auto.transmision.slice(1);
+            document.getElementById("modalKilometraje").textContent = auto.kilometraje || "N/D";
+            document.getElementById("modalPintura").textContent = auto.pintura;
+            document.getElementById("modalInteriores").textContent = auto.interiores || "N/D";
+            document.getElementById("modalDocumentos").textContent = auto.documentos || "Garantía Original";
+            document.getElementById("modalLlaves").textContent = auto.llaves || "Lavar con cuidado";
+            document.getElementById("modalCombustible").textContent = auto.combustible || "Importado";
+            document.getElementById("modalEstado").textContent = auto.estado;
+            document.getElementById("modalDescripcion").textContent = auto.descripcion;
+
+            document.getElementById("btnConsultarModal").onclick = function() {
+                const mensaje = encodeURIComponent(`Hola, me interesa ordenar o solicitar informes sobre la prenda: ${auto.nombre} ($${auto.precio.toLocaleString("es-MX")} MXN)`);
+                window.open(`https://wa.me/525587700625?text=${mensaje}`, '_blank');
+            };
+
+            document.getElementById("modalEspecificaciones").style.display = "flex";
+        }
+
+        /* Funciones de cambio de imagen en modal */
+        function actualizarImagenModal(index) {
+            indiceImagenActual = index;
+            const imgModal = document.getElementById("modalImagen");
+            imgModal.src = imagenesModalActuales[indiceImagenActual];
+            imgModal.onerror = function() { this.src = fallbackImg; };
+
+            const miniaturas = document.querySelectorAll(".miniatura");
+            miniaturas.forEach((m, i) => {
+                if(i === index) {
+                    m.classList.add("activa");
+                } else {
+                    m.classList.remove("activa");
+                }
+            });
+        }
+
+        function cambiarImagenModal(direccion) {
+            if (imagenesModalActuales.length <= 1) return;
+            let nuevoIndice = indiceImagenActual + direccion;
+            if (nuevoIndice < 0) {
+                nuevoIndice = imagenesModalActuales.length - 1;
+            } else if (nuevoIndice >= imagenesModalActuales.length) {
+                nuevoIndice = 0;
+            }
+            actualizarImagenModal(nuevoIndice);
+        }
+
+        function cerrarModal() {
+            document.getElementById("modalEspecificaciones").style.display = "none";
+        }
+
+        function cerrarModalAlHacerClicAfuera(event) {
+            if (event.target.id === "modalEspecificaciones") {
+                cerrarModal();
+            }
+        }
+
+        // Carga inicial
+        document.addEventListener("DOMContentLoaded", cargarCatalogo);
+    </script>
+</body>
+</html>
