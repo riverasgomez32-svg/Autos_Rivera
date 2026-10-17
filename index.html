@@ -3,40 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Vanity Soul</title>
+    <title>Autos Rivera - Catálogo</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Playfair Display', 'Georgia', serif;
+            font-family: 'Georgia', 'Times New Roman', serif;
         }
 
         body {
-            background-color: #C98FB0;
-            color: #2c2c2c;
+            background-color: #fcfcfc;
+            color: #1a1a1a;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
         header {
-            background-color: hsl(296, 63%, 82%);
+            background-color: #ffffff;
             padding: 2.5rem 1.5rem 1.8rem 1.5rem;
             text-align: center;
-            border-bottom: 1px solid #f0e6df;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         header h1 {
-            color: #b45ead;
-            font-size: 2.2rem;
-            letter-spacing: 3px;
+            color: #111111;
+            font-size: 2rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: normal;
         }
 
         header p {
-            color: #8d7b68;
+            color: #666666;
             margin-top: 0.5rem;
             font-style: italic;
             font-size: 1rem;
@@ -53,16 +53,14 @@
         /* SECCIÓN DE FILTROS Y ACCIÓN */
         .contenedor-filtros {
             background-color: #ffffff;
-            border: 1px solid #f0e6df;
+            border: 1px solid #e5e5e5;
             padding: 1.2rem;
             margin-bottom: 2rem;
-            font-family: 'Montserrat', Arial, sans-serif;
+            font-family: Arial, sans-serif;
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
             align-items: center;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(212, 163, 115, 0.05);
         }
 
         .grupo-filtro {
@@ -75,53 +73,51 @@
 
         .grupo-filtro label {
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #8d7b68;
+            color: #444444;
         }
 
         .grupo-filtro select {
             padding: 0.55rem;
-            border: 1px solid #e0d5c1;
-            background-color: #fdfbf7;
-            color: #2c2c2c;
+            border: 1px solid #ccc;
+            background-color: #fafafa;
+            color: #111111;
             font-size: 0.85rem;
             outline: none;
-            border-radius: 4px;
             cursor: pointer;
             transition: border-color 0.2s;
         }
 
         .grupo-filtro select:focus {
-            border-color: #d4a373;
+            border-color: #111111;
         }
 
         .btn-limpiar {
             background-color: transparent;
-            color: #8d7b68;
-            border: 1px solid #e0d5c1;
+            color: #666666;
+            border: 1px solid #ccc;
             padding: 0.6rem 1rem;
             font-size: 0.75rem;
             text-transform: uppercase;
             cursor: pointer;
-            border-radius: 4px;
             align-self: flex-end;
             transition: all 0.2s;
-            font-family: 'Montserrat', Arial, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         .btn-limpiar:hover {
-            background-color: #d4a373;
+            background-color: #111111;
             color: #ffffff;
-            border-color: #d4a373;
+            border-color: #111111;
         }
 
         .contador-resultados {
             width: 100%;
             font-size: 0.85rem;
-            color: #9c8e7d;
-            font-family: 'Montserrat', Arial, sans-serif;
+            color: #777;
+            font-family: Arial, sans-serif;
             margin-top: 0.2rem;
         }
 
@@ -134,10 +130,10 @@
 
         .tarjeta-auto {
             background-color: #ffffff;
-            border: 1px solid #f0e6df;
-            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            border-radius: 2px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease;
             display: flex;
             flex-direction: column;
         }
@@ -147,14 +143,13 @@
         }
 
         .tarjeta-auto:hover {
-            border-color: #d4a373;
-            box-shadow: 0 8px 20px rgba(212, 163, 115, 0.15);
+            border-color: #111111;
         }
 
         .imagen-contenedor {
             width: 100%;
-            height: 320px;
-            background-color: #f7f3ee;
+            height: 200px;
+            background-color: #f0f0f0;
             overflow: hidden;
             cursor: pointer;
             position: relative;
@@ -168,21 +163,20 @@
         }
 
         .tarjeta-auto:hover .imagen-contenedor img {
-            transform: scale(1.04);
+            transform: scale(1.03);
         }
 
         .etiqueta-gama {
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: rgba(212, 163, 115, 0.9);
+            background-color: rgba(17, 17, 17, 0.85);
             color: #ffffff;
-            padding: 0.25rem 0.6rem;
+            padding: 0.25rem 0.5rem;
             font-size: 0.7rem;
-            font-family: 'Montserrat', Arial, sans-serif;
+            font-family: Arial, sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border-radius: 3px;
         }
 
         .contenido-tarjeta {
@@ -190,26 +184,26 @@
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            font-family: 'Montserrat', Arial, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         .contenido-tarjeta h3 {
-            font-family: 'Playfair Display', serif;
-            color: #2c2c2c;
-            font-size: 1.2rem;
+            font-family: 'Georgia', serif;
+            color: #111111;
+            font-size: 1.15rem;
             margin-bottom: 0.3rem;
             font-weight: normal;
         }
 
         .precio-tarjeta {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #d4a373;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #111111;
             margin-bottom: 0.6rem;
         }
 
         .contenido-tarjeta .detalles {
-            color: #666666;
+            color: #555555;
             font-size: 0.85rem;
             margin-bottom: 1.2rem;
             line-height: 1.4;
@@ -217,33 +211,32 @@
         }
 
         .btn-contacto {
-            background-color: #d4a373;
+            background-color: #111111;
             color: #ffffff;
-            border: 1px solid #d4a373;
+            border: 1px solid #111111;
             padding: 0.75rem 1rem;
             font-size: 0.8rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
-            border-radius: 4px;
             text-align: center;
             transition: all 0.3s ease;
-            font-family: 'Montserrat', Arial, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         .btn-contacto:hover {
             background-color: #ffffff;
-            color: #d4a373;
+            color: #111111;
         }
 
         .sin-resultados {
             display: none;
             text-align: center;
             padding: 4rem 1rem;
-            color: #8d7b68;
+            color: #777777;
             font-size: 1.1rem;
             grid-column: 1 / -1;
-            font-family: 'Montserrat', Arial, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         /* MODAL DE ESPECIFICACIONES Y GALERÍA */
@@ -254,8 +247,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(44, 44, 44, 0.6);
-            backdrop-filter: blur(3px);
+            background-color: rgba(0, 0, 0, 0.75);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -266,14 +258,13 @@
             background-color: #ffffff;
             max-width: 650px;
             width: 100%;
-            border: 1px solid #f0e6df;
-            border-radius: 8px;
+            border: 1px solid #111111;
             position: relative;
             padding: 1.8rem;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             max-height: 90vh;
             overflow-y: auto;
-            font-family: 'Montserrat', Arial, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         .btn-cerrar {
@@ -282,23 +273,23 @@
             right: 20px;
             font-size: 1.8rem;
             cursor: pointer;
-            color: #8d7b68;
+            color: #111111;
             line-height: 1;
         }
 
         .modal-contenido h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
             margin-bottom: 0.2rem;
-            color: #2c2c2c;
+            color: #111111;
         }
 
         .modal-precio-destacado {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #d4a373;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #111111;
             margin-bottom: 1rem;
-            border-bottom: 1px solid #f0e6df;
+            border-bottom: 1px solid #e0e0e0;
             padding-bottom: 0.5rem;
         }
 
@@ -311,11 +302,9 @@
         .visor-imagen {
             position: relative;
             width: 100%;
-            height: 350px;
-            background-color: #f7f3ee;
-            border: 1px solid #f0e6df;
-            border-radius: 4px;
-            overflow: hidden;
+            height: 280px;
+            background-color: #f0f0f0;
+            border: 1px solid #e0e0e0;
         }
 
         .modal-imagen {
@@ -330,22 +319,19 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #2c2c2c;
+            background-color: rgba(17, 17, 17, 0.6);
+            color: #ffffff;
             border: none;
             font-size: 1.5rem;
             padding: 0.5rem 0.8rem;
             cursor: pointer;
             user-select: none;
-            border-radius: 50%;
-            margin: 0 0.5rem;
             transition: background-color 0.2s;
             z-index: 5;
         }
 
         .flecha-galeria:hover {
-            background-color: #d4a373;
-            color: #ffffff;
+            background-color: rgba(17, 17, 17, 0.9);
         }
 
         .flecha-izq {
@@ -366,23 +352,22 @@
 
         .miniatura {
             width: 70px;
-            height: 70px;
+            height: 50px;
             object-fit: cover;
             cursor: pointer;
             opacity: 0.6;
             border: 1px solid transparent;
-            border-radius: 4px;
             transition: all 0.2s ease;
-            background-color: #f7f3ee;
+            background-color: #f0f0f0;
             flex-shrink: 0;
         }
 
         .miniatura:hover, .miniatura.activa {
             opacity: 1;
-            border-color: #d4a373;
+            border-color: #111111;
         }
 
-        /* TABLA DE 12 ESPECIFICACIONES (DETALLES DE PRENDA) */
+        /* TABLA DE 12 ESPECIFICACIONES */
         .tabla-especificaciones {
             width: 100%;
             border-collapse: collapse;
@@ -391,17 +376,17 @@
         }
 
         .tabla-especificaciones tr:nth-child(even) {
-            background-color: #faf7f2;
+            background-color: #f9f9f9;
         }
 
         .tabla-especificaciones td {
             padding: 0.5rem 0.7rem;
-            border-bottom: 1px solid #f0e6df;
+            border-bottom: 1px solid #eee;
         }
 
         .tabla-especificaciones td.etiqueta {
-            font-weight: 600;
-            color: #8d7b68;
+            font-weight: bold;
+            color: #111111;
             width: 45%;
         }
 
@@ -412,48 +397,47 @@
         .modal-descripcion {
             font-size: 0.88rem;
             line-height: 1.5;
-            color: #444444;
+            color: #333333;
             margin-bottom: 1.2rem;
             padding: 0.8rem;
-            background-color: #faf7f2;
-            border-left: 3px solid #d4a373;
-            border-radius: 0 4px 4px 0;
+            background-color: #f7f7f7;
+            border-left: 3px solid #111111;
         }
 
-        /* AVISO DE PROTECCIÓN / LEGAL Y POLÍTICA DE COMPRA */
+        /* AVISO DE PROTECCIÓN / LEGAL */
         .aviso-proteccion {
             margin-top: 3.5rem;
             padding: 1.2rem;
-            background-color: #faf7f2;
-            border: 1px solid #f0e6df;
-            border-radius: 6px;
-            font-family: 'Montserrat', Arial, sans-serif;
+            background-color: #f4f4f4;
+            border: 1px solid #e0e0e0;
+            border-radius: 2px;
+            font-family: Arial, sans-serif;
             font-size: 0.78rem;
-            color: #8d7b68;
+            color: #666666;
             line-height: 1.5;
             text-align: justify;
         }
 
         .aviso-proteccion strong {
-            color: #2c2c2c;
+            color: #333333;
         }
 
         footer {
             background-color: #ffffff;
             text-align: center;
             padding: 2rem 1.5rem;
-            border-top: 1px solid #f0e6df;
-            color: #8d7b68;
+            border-top: 1px solid #e0e0e0;
+            color: #777777;
             font-size: 0.85rem;
-            font-family: 'Montserrat', Arial, sans-serif;
+            font-family: Arial, sans-serif;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Vanity Soul</h1>
-        <p>Catálogo exclusivo de moda femenina</p>
+        <h1>Autos Rivera</h1>
+        <p>Catálogo de vehículos semi-nuevos, clásicos y proyectos especiales</p>
     </header>
 
     <main>
@@ -463,27 +447,27 @@
                 <label for="filtroMarca">Marca</label>
                 <select id="filtroMarca" onchange="filtrarCatalogo()">
                     <option value="todos">Todas las marcas</option>
-                    <option value="zara">Zara</option>
-                    <option value="mango">Mango</option>
-                    <option value="hm">H&M</option>
-                    <option value="stradivarius">Stradivarius</option>
-                    <option value="massimo-dutti">Massimo Dutti</option>
-                    <option value="pull-bear">Pull & Bear</option>
-                    <option value="bershka">Bershka</option>
-                    <option value="forever21">Forever 21</option>
-                    <option value="shein">Shein Premium</option>
-                    <option value="rivera-atelier">Rivera Atelier</option>
+                    <option value="volkswagen">Volkswagen</option>
+                    <option value="nissan">Nissan</option>
+                    <option value="ford">Ford</option>
+                    <option value="chevrolet">Chevrolet</option>
+                    <option value="honda">Honda</option>
+                    <option value="seat">Seat</option>
+                    <option value="toyota">Toyota</option>
+                    <option value="kia">Kia</option>
+                    <option value="hyundai">Hyundai</option>
+                    <option value="mazda">Mazda</option>
                 </select>
             </div>
 
             <div class="grupo-filtro">
-                <label for="filtroTipo">Tipo de Prenda</label>
+                <label for="filtroTipo">Tipo de Vehículo</label>
                 <select id="filtroTipo" onchange="filtrarCatalogo()">
                     <option value="todos">Todos los tipos</option>
-                    <option value="vestido">Vestidos</option>
-                    <option value="blusa">Blusas / Tops</option>
-                    <option value="pantalon">Pantalones / Jeans</option>
-                    <option value="abrigo">Abrigos / Sacos</option>
+                    <option value="sedan">Sedán</option>
+                    <option value="coupe">Coupe / Deportivo</option>
+                    <option value="hatchback">Hatchback</option>
+                    <option value="camioneta">Camioneta / Pick-Up</option>
                 </select>
             </div>
 
@@ -491,38 +475,37 @@
                 <label for="filtroRangoPrecio">Rango de Precio</label>
                 <select id="filtroRangoPrecio" onchange="filtrarCatalogo()">
                     <option value="todos">Cualquier precio</option>
-                    <option value="rango-1">Hasta $500 MXN</option>
-                    <option value="rango-2">$500 - $1,500 MXN</option>
-                    <option value="rango-3">Más de $1,500 MXN</option>
+                    <option value="rango-1">Hasta $100,000 MXN</option>
+                    <option value="rango-2">$100,000 - $250,000 MXN</option>
+                    <option value="rango-3">Más de $250,000 MXN</option>
                 </select>
             </div>
 
             <div class="grupo-filtro">
-                <label for="filtroTransmision">Talla Disponibilidad</label>
+                <label for="filtroTransmision">Transmisión</label>
                 <select id="filtroTransmision" onchange="filtrarCatalogo()">
-                    <option value="todos">Todas las tallas</option>
-                    <option value="chica">Chica (S)</option>
-                    <option value="mediana">Mediana (M)</option>
-                    <option value="grande">Grande (L)</option>
+                    <option value="todos">Todas</option>
+                    <option value="manual">Manual</option>
+                    <option value="automatica">Automática</option>
                 </select>
             </div>
 
             <button class="btn-limpiar" onclick="limpiarFiltros()">Limpiar Filtros</button>
 
             <div class="contador-resultados" id="contadorResultados">
-                Cargando prendas...
+                Cargando vehículos...
             </div>
         </section>
 
-        <!-- GRID DE VEHÍCULOS (AHORA PRENDAS DE ROPA) -->
+        <!-- GRID DE VEHÍCULOS -->
         <div class="grid-catalogo" id="gridCatalogo"></div>
         <div class="sin-resultados" id="sinResultados">
-            No se encontraron prendas que coincidan con los filtros seleccionados.
+            No se encontraron vehículos que coincidan con los filtros seleccionados.
         </div>
 
         <!-- AVISO LEGAL Y DE PROTECCIÓN -->
         <section class="aviso-proteccion">
-            <p><strong>Aviso importante:</strong> Los precios, disponibilidad de prendas y guías de tallas están sujetos a cambios sin previo aviso. Las imágenes son ilustrativas y los tonos reales de los telares pueden variar según la pantalla. Cambios o devoluciones son válidos dentro de los primeros 15 días posteriores a la entrega conservando sus etiquetas originales.</p>
+            <p><strong>Aviso importante:</strong> Los precios, especificaciones y disponibilidad de los vehículos están sujetos a cambios sin previo aviso. Los costos mostrados son de carácter informativo y pueden variar en función de las condiciones mecánicas, estéticas, equipamiento adicional o acuerdos directos al momento de la negociación. Asimismo, no incluyen trámites vehiculares, gestoría ni seguros salvo que se indique lo contrario en el contrato final.</p>
         </section>
     </main>
 
@@ -537,60 +520,60 @@
             <div class="galeria-contenedor">
                 <div class="visor-imagen">
                     <button class="flecha-galeria flecha-izq" onclick="cambiarImagenModal(-1)">&#8249;</button>
-                    <img id="modalImagen" class="modal-imagen" src="" alt="Prenda en venta">
+                    <img id="modalImagen" class="modal-imagen" src="" alt="Auto en venta">
                     <button class="flecha-galeria flecha-der" onclick="cambiarImagenModal(1)">&#8250;</button>
                 </div>
                 <div id="modalMiniaturas" class="miniaturas-contenedor"></div>
             </div>
             
-            <!-- 12 ESPECIFICACIONES CLAVE (ADAPTADAS A TIENDA DE ROPA) -->
+            <!-- 12 ESPECIFICACIONES CLAVE -->
             <table class="tabla-especificaciones">
                 <tr>
-                    <td class="etiqueta">1. Colección / Temporada:</td>
+                    <td class="etiqueta">1. Año / Modelo:</td>
                     <td class="valor" id="modalAnio">-</td>
                 </tr>
                 <tr>
-                    <td class="etiqueta">2. Marca / Diseñador:</td>
+                    <td class="etiqueta">2. Marca:</td>
                     <td class="valor" id="modalMarcaTexto">-</td>
                 </tr>
                 <tr>
-                    <td class="etiqueta">3. Categoria / Tipo:</td>
+                    <td class="etiqueta">3. Carrocería / Tipo:</td>
                     <td class="valor" id="modalTipoTexto">-</td>
                 </tr>
                 <tr>
-                    <td class="etiqueta">4. Composición / Material:</td>
+                    <td class="etiqueta">4. Motorización:</td>
                     <td class="valor" id="modalMotor">-</td>
                 </tr>
                 <tr>
-                    <td class="etiqueta">5. Talla Principal:</td>
+                    <td class="etiqueta">5. Transmisión:</td>
                     <td class="valor" id="modalTransmision">-</td>
                 </tr>
                 <tr>
-                    <td class="etiqueta">6. Guía / Ajuste:</td>
+                    <td class="etiqueta">6. Kilometraje:</td>
                     <td class="valor" id="modalKilometraje">-</td>
                 </tr>
                 <tr>
-                    <td class="etiqueta">7. Tonalidad / Color:</td>
+                    <td class="etiqueta">7. Color Exterior:</td>
                     <td class="valor" id="modalPintura">-</td>
                 </tr>
                 <tr>
-                    <td class="etiqueta">8. Detalles / Textura:</td>
+                    <td class="etiqueta">8. Vestiduras / Interiores:</td>
                     <td class="valor" id="modalInteriores">-</td>
                 </tr>
                 <tr>
-                    <td class="etiqueta">9. Garantía / Autenticidad:</td>
+                    <td class="etiqueta">9. Documentación:</td>
                     <td class="valor" id="modalDocumentos">-</td>
                 </tr>
                 <tr>
-                    <td class="etiqueta">10. Cuidados de Lavado:</td>
+                    <td class="etiqueta">10. Duplicado de Llaves:</td>
                     <td class="valor" id="modalLlaves">-</td>
                 </tr>
                 <tr>
-                    <td class="etiqueta">11. Origen / Confección:</td>
+                    <td class="etiqueta">11. Combustible:</td>
                     <td class="valor" id="modalCombustible">-</td>
                 </tr>
                 <tr>
-                    <td class="etiqueta">12. Disponibilidad / Stock:</td>
+                    <td class="etiqueta">12. Estado del Vehículo:</td>
                     <td class="valor" id="modalEstado">-</td>
                 </tr>
             </table>
@@ -602,146 +585,335 @@
     </div>
 
     <footer>
-        <p><strong>Contacto Directo:</strong> +52 8770  0625 | Acolman</p>
-        <p>&copy; 2026 Vanity Soul. Todos los derechos reservados.</p>
+        <p><strong>Contacto Directo:</strong> +52 55 1756 5799 | Ciudad de México</p>
+        <p>&copy; 2026 Autos Rivera. Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        const fallbackImg = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22290%22%20height%3D%22320%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23f7f3ee%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20font-family%3D%22Arial%22%20font-size%3D%2214%22%20fill%3D%22%238d7b68%22%20text-anchor%3D%22middle%22%20dy%3D%22.3em%22%3EImagen%20no%20disponible%3C%2Ftext%3E%3C%2Fsvg%3E";
+        const fallbackImg = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22290%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23eeeeee%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20font-family%3D%22Arial%22%20font-size%3D%2214%22%20fill%3D%22%23888888%22%20text-anchor%3D%22middle%22%20dy%3D%22.3em%22%3EImagen%20no%20disponible%3C%2Ftext%3E%3C%2Fsvg%3E";
 
         /* Variables globales */
         let imagenesModalActuales = [];
         let indiceImagenActual = 0;
 
-        /* Arreglo de prendas (mantenemos estructura exacta y 12 especificaciones clave) */
+        /* Arreglo de vehículos con las 12 especificaciones clave */
         const autos = [
-            { 
-                id: "vestido-saten", 
-                nombre: "Vestido Satén Elegance", 
-                precio: 850, 
-                marca: "zara", 
-                tipo: "vestido", 
-                transmision: "mediana", 
-                rango: "rango-2", 
-                gama: "Tendencia", 
-                imagenes: ["img/vestido_saten_1.jpg", "img/vestido_saten_2.jpg"], 
-                anio: "Primavera-Verano 2026", 
-                motor: "95% Seda sintética, 5% Elastano", 
-                kilometraje: "Corte Slim Fit",
-                pintura: "Rosa Palo / Nude", 
-                interiores: "Acabado Satinado Brillantina",
-                documentos: "Nueva con Etiquetas",
-                llaves: "Lavar en seco o ciclo delicado",
-                combustible: "Nacional / Importado",
-                estado: "Disponible", 
-                descripcion: "Vestido midi de satén suave con escote fluido y tirantes ajustables. Ideal para eventos formales o de noche." 
-            },
-            { 
-                id: "blusa-lino", 
-                nombre: "Pantalon bagy", 
-                precio: 750, 
-                marca: "mango", 
-                tipo: "pantalon", 
-                transmision: "chica", 
-                rango: "rango-1", 
-                gama: "Básico Luxe", 
-                imagenes: ["img/blusa_lino_1.jpg", "img/blusa_lino_2.jpg",], 
-                anio: "Verano 2026", 
-                motor: "100% Lino Orgánico", 
-                kilometraje: "Corte Holgado Comfort",
-                pintura: "Blanco Marfil", 
-                interiores: "Botones de Concha Natural",
-                documentos: "Garantía de Calidad Mango",
-                llaves: "Lavar a mano con agua fría",
-                combustible: "España",
-                estado: "Disponible", 
-                descripcion: "Blusa fresca y transpirable de lino premium. Diseño versátil de manga corta con cuello en V." 
-            },
-            { 
-                id: "overol-gris", 
-                nombre: "overol-gris", 
-                precio: 1890, 
-                marca: "massimo-dutti", 
-                tipo: "vesido", 
-                transmision: "mediana", 
-                rango: "rango-3", 
-                gama: "Exclusivo", 
-                imagenes: ["img/vestido-gris_1.jpg"], 
-                anio: "Otoño-Invierno 2026", 
-                motor: "80% Lana, 20% Poliamida", 
-                kilometraje: "Estructurado / Estándar",
-                pintura: "Camel / Café Claro", 
-                interiores: "Forro interior de Viscosa",
-                documentos: "Etiqueta Original Massimo Dutti",
-                llaves: "Limpieza profesional únicamente",
-                combustible: "Italia / Confección Premium",
-                estado: "Disponible", 
-                descripcion: "Saco largo confeccionado en mezcla de lana de alta densidad. Solapas cruzadas y cinturón ajustable." 
-            },
-            { 
-                id: "blusa ", 
-                nombre: "Blusa-negra", 
-                precio: 680, 
-                marca: "stradivarius", 
-                tipo: "blusa", 
-                transmision: "grande", 
-                rango: "rango-2", 
-                gama: "Casual Chic", 
-                imagenes: ["img/blusa_1.jpg"], 
-                anio: "Primavera 2026", 
-                motor: "Poly-Viscosa Stretch", 
-                kilometraje: "Tiro Alto / Pierna Ancha",
-                pintura: "Negro Obsidiana", 
-                interiores: "Pliegues frontales de vestir",
-                documentos: "Prenda Auténtica",
-                llaves: "Lavar a máquina 30°C",
-                combustible: "Nacional",
-                estado: "Disponible", 
-                descripcion: "Pantalón estilo pijama de vestir, tiro alto favorecedor para estilizar la figura. Caída fluida y elegante." 
-            },
-            { 
-                id: "vestido-floral", 
-                nombre: "Vestido Largo BOHO Floral", 
-                precio: 1200, 
-                marca: "rivera-atelier", 
-                tipo: "vestido", 
-                transmision: "chica", 
-                rango: "rango-2", 
-                gama: "Artesanal", 
-                imagenes: ["img/vestido_boho_1.jpg"], 
-                anio: "Edición Limitada 2026", 
-                motor: "100% Algodón Bordado", 
-                kilometraje: "Corte A / Relajado",
-                pintura: "Estampado Floral Lavanda", 
-                interiores: "Encaje delicado en bordes",
-                documentos: "Certificado Rivera Atelier",
-                llaves: "Lavar a mano sin blanqueador",
-                combustible: "Hecho a mano en México",
-                estado: "Disponible", 
-                descripcion: "Diseño boho-chic con cuello drapeado y mangas abullonadas. Confeccionado artesanalmente." 
-            },
-             { 
-                id: "saco-abrigo", 
-                nombre: "Vestido Largo BOHO Floral", 
-                precio: 1200, 
-                marca: "rivera-atelier", 
-                tipo: "abrigo", 
-                transmision: "chica", 
-                rango: "rango-2", 
-                gama: "Artesanal", 
-                imagenes: ["img/abrigo_1.jpg"], 
-                anio: "Edición Limitada 2026", 
-                motor: "100% Algodón Bordado", 
-                kilometraje: "Corte A / Relajado",
-                pintura: "Estampado Floral Lavanda", 
-                interiores: "Encaje delicado en bordes",
-                documentos: "Certificado Rivera Atelier",
-                llaves: "Lavar a mano sin blanqueador",
-                combustible: "Hecho a mano en México",
-                estado: "Disponible", 
-                descripcion: "Diseño boho-chic con cuello drapeado y mangas abullonadas. Confeccionado artesanalmente." 
-            }
-        ];
+    { 
+        id: "fiesta", 
+        nombre: "Ford Fiesta", 
+        precio: 90000, 
+        marca: "ford", 
+        tipo: "hatchback", 
+        transmision: "manual", 
+        rango: "rango-1", 
+        gama: "Económico", 
+        imagenes: ["img/FordFiesta.jpg", "img/FordFiesta_2.jpg", "img/FordFiesta_3.jpg"], 
+        anio: 2012, 
+        motor: "1.6L Ti-VCT", 
+        kilometraje: "128,000 km",
+        pintura: "Azul Marino", 
+        interiores: "Tela / Bitono",
+        documentos: "Factura Original",
+        llaves: "Sí (2 juegos)",
+        combustible: "Gasolina",
+        estado: "Disponible", 
+        descripcion: "Hatchback compacto con excelente manejo, aire acondicionado helando e interiores limpios." 
+    },
+    { 
+        id: "mustang", 
+        nombre: "Ford Mustang GT", 
+        precio: 420000, 
+        marca: "ford", 
+        tipo: "coupe", 
+        transmision: "automatica", 
+        rango: "rango-3", 
+        gama: "Deportivo Alto", 
+        imagenes: ["img/FordMustang.jpg", "img/FordMustang_2.jpg", "img/FordMustang_3.jpg"], 
+        anio: 2015, 
+        motor: "5.0L V8 Coyote", 
+        kilometraje: "68,000 km",
+        pintura: "Negro Brillante", 
+        interiores: "Piel Negra Premium",
+        documentos: "Factura Original de Agencia",
+        llaves: "Sí (2 Controles)",
+        combustible: "Gasolina Premium",
+        estado: "Disponible", 
+        descripcion: "Músculo americano con potente motor V8 Coyote de más de 400 HP, modos de manejo y sonido de escape V8." 
+    },
+    { 
+        id: "golf-gti", 
+        nombre: "Volkswagen Golf GTI", 
+        precio: 160000, 
+        marca: "volkswagen", 
+        tipo: "hatchback", 
+        transmision: "manual", 
+        rango: "rango-2", 
+        gama: "Deportivo", 
+        imagenes: ["img/GolfGTI.jpg", "img/GolfGTI_2.jpg", "img/GolfGTI_3.jpg"], 
+        anio: 2001, 
+        motor: "1.8T Turbo", 
+        kilometraje: "155,000 km",
+        pintura: "Rojo Tornado", 
+        interiores: "Piel Negra GTI",
+        documentos: "Factura Original",
+        llaves: "1 Juego Tipo Navaja",
+        combustible: "Gasolina Premium",
+        estado: "Disponible", 
+        descripcion: "Hatchback deportivo. Interiores en piel, rines deportivos de 17 pulgadas y reprogramación ligera." 
+    },
+    { 
+        id: "honda-civic", 
+        nombre: "Honda Civic", 
+        precio: 110000, 
+        marca: "honda", 
+        tipo: "sedan", 
+        transmision: "manual", 
+        rango: "rango-2", 
+        gama: "Medio", 
+        imagenes: ["img/HondaCivic.png", "img/HondaCivic_2.png", "img/HondaCivic_3.png"], 
+        anio: 2002, 
+        motor: "1.7L VTEC", 
+        kilometraje: "160,000 km",
+        pintura: "Plata Metálico", 
+        interiores: "Tela Gris Conservada",
+        documentos: "Factura Original",
+        llaves: "Sí (2 juegos)",
+        combustible: "Gasolina",
+        estado: "Disponible", 
+        descripcion: "Sedán confiable con vestiduras impecables, mantenimientos preventivos al día y manejo muy suave." 
+    },
+    { 
+        id: "elantra", 
+        nombre: "Hyundai Elantra", 
+        precio: 180000, 
+        marca: "hyundai", 
+        tipo: "sedan", 
+        transmision: "automatica", 
+        rango: "rango-2", 
+        gama: "Medio", 
+        imagenes: ["img/HyundaiElantra.jpg", "img/HyundaiElantra_2.jpg", "img/HyundaiElantra_3.jpg"], 
+        anio: 2017, 
+        motor: "2.0L 4 Cilindros", 
+        kilometraje: "85,000 km",
+        pintura: "Negro Obsidiana", 
+        interiores: "Tela Negra de Alta Resistencia",
+        documentos: "Factura de Agencia",
+        llaves: "Sí (2 juegos)",
+        combustible: "Gasolina",
+        estado: "Disponible", 
+        descripcion: "Sedán elegante con gran confort de marcha, vestiduras bien conservadas y rines de aluminio." 
+    },
+    { 
+        id: "rio", 
+        nombre: "Kia Rio", 
+        precio: 175000, 
+        marca: "kia", 
+        tipo: "sedan", 
+        transmision: "manual", 
+        rango: "rango-2", 
+        gama: "Medio", 
+        imagenes: ["img/kiario.jpg", "img/kiario_2.jpg", "img/kiario_3.jpg"], 
+        anio: 2018, 
+        motor: "1.6L GDI", 
+        kilometraje: "72,000 km",
+        pintura: "Azul Eléctrico", 
+        interiores: "Tela Deportiva",
+        documentos: "Factura Original",
+        llaves: "Sí (2 juegos)",
+        combustible: "Gasolina",
+        estado: "Disponible", 
+        descripcion: "Equipamiento de seguridad completo con 6 bolsas de aire, frenos de disco y pantalla multifunción." 
+    },
+    { 
+        id: "mazda3", 
+        nombre: "Mazda 3", 
+        precio: 210000, 
+        marca: "mazda", 
+        tipo: "sedan", 
+        transmision: "automatica", 
+        rango: "rango-2", 
+        gama: "Medio", 
+        imagenes: ["img/Mazda3.jpg", "img/Mazda3_2.jpg", "img/Mazda3_3.jpg"], 
+        anio: 2017, 
+        motor: "2.5L SkyActiv-G", 
+        kilometraje: "90,000 km",
+        pintura: "Rojo Moto", 
+        interiores: "Tela / Piel",
+        documentos: "Factura de Agencia",
+        llaves: "Sí (2 Llaves de Presencia)",
+        combustible: "Gasolina",
+        estado: "Disponible", 
+        descripcion: "Diseño Kodo, acabados premium en interiores y manejo sumamente dinámico." 
+    },
+    { 
+        id: "nissan-estaqui", 
+        nombre: "Nissan Estaquitas", 
+        precio: 95000, 
+        marca: "nissan", 
+        tipo: "camioneta", 
+        transmision: "manual", 
+        rango: "rango-1", 
+        gama: "Económico", 
+        imagenes: ["img/Nissan_Estaqui.jpg", "img/Nissan_Estaqui_2.jpg", "img/Nissan_Estaqui_3.jpg"], 
+        anio: 1995, 
+        motor: "2.4L KA24E", 
+        kilometraje: "210,000 km",
+        pintura: "Blanco Trabajo", 
+        interiores: "Vinilo Reforzado",
+        documentos: "Factura de Empresa con Respaldo",
+        llaves: "1 Juego",
+        combustible: "Gasolina",
+        estado: "Disponible", 
+        descripcion: "Camioneta de trabajo totalmente funcional. Chasis libre de óxido y motor recién ajustado." 
+    },
+    { 
+        id: "tsuru", 
+        nombre: "Nissan Tsuru", 
+        precio: 65000, 
+        marca: "nissan", 
+        tipo: "sedan", 
+        transmision: "manual", 
+        rango: "rango-1", 
+        gama: "Económico", 
+        imagenes: ["img/NissanTsuru.jpg", "img/NissanTsuru_2.jpg", "img/NissanTsuru_3.jpg"], 
+        anio: 2000, 
+        motor: "1.6L 16V", 
+        kilometraje: "180,000 km",
+        pintura: "Blanco Automotriz", 
+        interiores: "Tela",
+        documentos: "Factura Original",
+        llaves: "1 Juego",
+        combustible: "Gasolina",
+        estado: "Disponible", 
+        descripcion: "Un clásico citadino restaurado para uso diario. Rendimiento y refacciones muy accesibles." 
+    },
+    { 
+        id: "versa", 
+        nombre: "Nissan Versa", 
+        precio: 135000, 
+        marca: "nissan", 
+        tipo: "sedan", 
+        transmision: "automatica", 
+        rango: "rango-2", 
+        gama: "Medio", 
+        imagenes: ["img/NissanVersa.jpg", "img/NissanVersa_2.jpg", "img/NissanVersa_3.jpg"], 
+        anio: 2016, 
+        motor: "1.6L 4 Cilindros", 
+        kilometraje: "105,000 km",
+        pintura: "Gris Oscuro", 
+        interiores: "Tela Oscura",
+        documentos: "Factura Original",
+        llaves: "Sí (2 Controles)",
+        combustible: "Gasolina",
+        estado: "Disponible", 
+        descripcion: "Espacio interior sobresaliente, transmisión automática suave y gran eficiencia de combustible." 
+    },
+    { 
+        id: "ibiza", 
+        nombre: "Seat Ibiza", 
+        precio: 115000, 
+        marca: "seat", 
+        tipo: "hatchback", 
+        transmision: "manual", 
+        rango: "rango-2", 
+        gama: "Medio", 
+        imagenes: ["img/SeatIbiza.jpg", "img/SeatIbiza_2.jpg", "img/SeatIbiza_3.jpg"], 
+        anio: 2013, 
+        motor: "2.0L 4 Cilindros", 
+        kilometraje: "130,000 km",
+        pintura: "Blanco Nevada", 
+        interiores: "Tela Deportiva Ibiza",
+        documentos: "Factura Original",
+        llaves: "Sí (2 juegos)",
+        combustible: "Gasolina",
+        estado: "Disponible", 
+        descripcion: "Diseño juvenil, quemacocos panorámico y excelente respuesta mecánica." 
+    },
+    { 
+        id: "corolla", 
+        nombre: "Toyota Corolla", 
+        precio: 165000, 
+        marca: "toyota", 
+        tipo: "sedan", 
+        transmision: "automatica", 
+        rango: "rango-2", 
+        gama: "Medio", 
+        imagenes: ["img/ToyotaCorolla.jpg", "img/ToyotaCorolla_2.jpg", "img/ToyotaCorolla_3.jpg"], 
+        anio: 2015, 
+        motor: "1.8L VVTi", 
+        kilometraje: "98,000 km",
+        pintura: "Blanco Perlado", 
+        interiores: "Tela Clara Confort",
+        documentos: "Factura de Agencia",
+        llaves: "Sí (2 juegos)",
+        combustible: "Gasolina",
+        estado: "Disponible", 
+        descripcion: "Confiabilidad mecánica legendaria, aire acondicionado automático y cámara de reversa." 
+    },
+    { 
+        id: "vocho", 
+        nombre: "Volkswagen Vocho", 
+        precio: 50000, 
+        marca: "volkswagen", 
+        tipo: "sedan", 
+        transmision: "manual", 
+        rango: "rango-1", 
+        gama: "Económico", 
+        imagenes: ["img/vocho.jpg", "img/vocho_2.jpg", "img/vocho_3.jpg"], 
+        anio: 1994, 
+        motor: "1.6L Fuel Injection", 
+        kilometraje: "165,000 km",
+        pintura: "Azul Clásico", 
+        interiores: "Vinilo Azul Clásico",
+        documentos: "Factura Original",
+        llaves: "1 Juego",
+        combustible: "Gasolina",
+        estado: "Disponible", 
+        descripcion: "Restauración estética y mecánica básica. Excelente opción clásica de bajo costo." 
+    },
+    { 
+        id: "aveo", 
+        nombre: "Chevrolet Aveo", 
+        precio: 85000, 
+        marca: "chevrolet", 
+        tipo: "sedan", 
+        transmision: "manual", 
+        rango: "rango-1", 
+        gama: "Económico", 
+        imagenes: ["img/ChevroletAveo.jpg", "img/ChevroletAveo_2.jpg", "img/ChevroletAveo_3.jpg"], 
+        anio: 2013, 
+        motor: "1.6L 4 Cilindros", 
+        kilometraje: "115,000 km",
+        pintura: "Gris Plata", 
+        interiores: "Tela Negra",
+        documentos: "Factura Original",
+        llaves: "Sí (2 juegos)",
+        combustible: "Gasolina",
+        estado: "Disponible", 
+        descripcion: "Sedán citadino moderno, económico en refacciones y excelente consumo de combustible." 
+    },
+    { 
+        id: "chevy-pop", 
+        nombre: "Chevy Pop", 
+        precio: 45000, 
+        marca: "chevrolet", 
+        tipo: "hatchback", 
+        transmision: "manual", 
+        rango: "rango-1", 
+        gama: "Económico", 
+        imagenes: ["img/Chevy pop.jpg", "img/Chevy pop_2.jpg", "img/Chevy pop_3.jpg"], 
+        anio: 1998, 
+        motor: "1.4L 4 Cilindros", 
+        kilometraje: "140,000 km",
+        pintura: "Original Conservada", 
+        interiores: "Tela Gris",
+        documentos: "Factura de Empresa con copia de origen",
+        llaves: "1 Juego",
+        combustible: "Gasolina",
+        estado: "Disponible", 
+        descripcion: "Proyecto de conservación integral. Pintura bien conservada, interiores impecables y motor 1.4L súper económico." 
+    }
+];
 
         function cargarCatalogo() {
             const grid = document.getElementById("gridCatalogo");
@@ -767,7 +939,7 @@
                         <h3>${auto.nombre}</h3>
                         <p class="precio-tarjeta">$${auto.precio.toLocaleString("es-MX")} MXN</p>
                         <p class="detalles">${auto.descripcion}</p>
-                        <button class="btn-contacto" onclick="abrirEspecificaciones('${auto.id}')">Ver Detalle de Prenda</button>
+                        <button class="btn-contacto" onclick="abrirEspecificaciones('${auto.id}')">Ver Especificaciones</button>
                     </div>
                 `;
                 grid.appendChild(article);
@@ -802,7 +974,7 @@
             const sinResultados = document.getElementById("sinResultados");
             sinResultados.style.display = (visibles === 0) ? "block" : "none";
 
-            document.getElementById("contadorResultados").textContent = `Mostrando ${visibles} de ${autos.length} prendas disponibles`;
+            document.getElementById("contadorResultados").textContent = `Mostrando ${visibles} de ${autos.length} vehículos disponibles`;
         }
 
         function limpiarFiltros() {
@@ -814,7 +986,7 @@
         }
 
         function actualizarContador() {
-            document.getElementById("contadorResultados").textContent = `Mostrando ${autos.length} de ${autos.length} prendas disponibles`;
+            document.getElementById("contadorResultados").textContent = `Mostrando ${autos.length} de ${autos.length} vehículos disponibles`;
         }
 
         /* LÓGICA DE MODAL, NAVEGACIÓN CON FLECHAS Y MINIATURAS */
@@ -850,7 +1022,7 @@
 
             actualizarImagenModal(0);
 
-            // Poblar las 12 especificaciones adaptadas a la ropa
+            // Poblar las 12 especificaciones
             document.getElementById("modalAnio").textContent = auto.anio;
             document.getElementById("modalMarcaTexto").textContent = auto.marca.charAt(0).toUpperCase() + auto.marca.slice(1);
             document.getElementById("modalTipoTexto").textContent = auto.tipo.charAt(0).toUpperCase() + auto.tipo.slice(1);
@@ -859,15 +1031,15 @@
             document.getElementById("modalKilometraje").textContent = auto.kilometraje || "N/D";
             document.getElementById("modalPintura").textContent = auto.pintura;
             document.getElementById("modalInteriores").textContent = auto.interiores || "N/D";
-            document.getElementById("modalDocumentos").textContent = auto.documentos || "Garantía Original";
-            document.getElementById("modalLlaves").textContent = auto.llaves || "Lavar con cuidado";
-            document.getElementById("modalCombustible").textContent = auto.combustible || "Importado";
+            document.getElementById("modalDocumentos").textContent = auto.documentos || "En regla";
+            document.getElementById("modalLlaves").textContent = auto.llaves || "1 Juego";
+            document.getElementById("modalCombustible").textContent = auto.combustible || "Gasolina";
             document.getElementById("modalEstado").textContent = auto.estado;
             document.getElementById("modalDescripcion").textContent = auto.descripcion;
 
             document.getElementById("btnConsultarModal").onclick = function() {
-                const mensaje = encodeURIComponent(`Hola, me interesa ordenar o solicitar informes sobre la prenda: ${auto.nombre} ($${auto.precio.toLocaleString("es-MX")} MXN)`);
-                window.open(`https://wa.me/525587700625?text=${mensaje}`, '_blank');
+                const mensaje = encodeURIComponent(`Hola, me interesa obtener informes sobre el vehículo: ${auto.nombre} ($${auto.precio.toLocaleString("es-MX")} MXN)`);
+                window.open(`https://wa.me/525517565799?text=${mensaje}`, '_blank');
             };
 
             document.getElementById("modalEspecificaciones").style.display = "flex";
